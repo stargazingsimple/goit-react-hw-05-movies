@@ -1,16 +1,18 @@
+import * as API from '../../services/api-movies';
+import { useState, useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
+  const [el, setEl] = useState(null);
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await API.getMovieCredits(618353);
+      setEl(res);
+    };
+    getData();
+  }, []);
+  console.log(el);
+
+  return <ToastContainer />;
 };
