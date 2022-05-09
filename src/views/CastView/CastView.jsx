@@ -18,8 +18,8 @@ export default function CastView() {
 
   return (
     <>
-      {!cast.length && <p>We don't have any casters info for the movie</p>}
-      {cast && (
+      {!cast.length > 0 && <p>We don't have any casters info for the movie</p>}
+      {cast.length > 0 && (
         <BlockMovie>
           <ul>
             {cast.map(el => {

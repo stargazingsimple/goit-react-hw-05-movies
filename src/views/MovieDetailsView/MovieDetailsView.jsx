@@ -44,8 +44,8 @@ export default function MovieDetailsView() {
       <button type="button" onClick={() => goBack()}>
         Go Back
       </button>
-      {!movie && <Loader />}
-      {movie && (
+      {!Object.keys(movie).length > 0 && <Loader />}
+      {Object.keys(movie).length > 0 && (
         <>
           <BlockMovie>
             {movie.poster_path ? (

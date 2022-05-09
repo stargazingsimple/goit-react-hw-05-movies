@@ -16,8 +16,8 @@ export default function ReviewsView() {
 
   return (
     <>
-      {!reviews.length && <p>We don't have any reviews for the movie</p>}
-      {reviews && (
+      {!reviews.length > 0 && <p>We don't have any reviews for the movie</p>}
+      {reviews.length > 0 && (
         <ul>
           {reviews.map(el => {
             return (
