@@ -30,7 +30,7 @@ export const getMovieDetails = async id => {
     const response = await axios.get(`/movie/${id}?api_key=${API_KEY}`);
     return response.data;
   } catch (error) {
-    toast.error(error.message);
+    toast.info('Not all information available');
   }
 };
 

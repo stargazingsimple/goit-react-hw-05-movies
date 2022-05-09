@@ -7,6 +7,7 @@ export default function MovieDetailsView() {
   const { movieId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+  console.log(location);
 
   useEffect(() => {
     const getData = async () => {
@@ -24,17 +25,25 @@ export default function MovieDetailsView() {
     <>
       <button
         type="button"
-        onClick={() => navigate(location?.state?.from?.pathname ?? '/movies')}
+        onClick={() =>
+          navigate(
+            `${
+              location?.state?.from?.pathname + location?.state?.from?.search
+            }` ?? '/movies'
+          )
+        }
       >
         Go Back
       </button>
 
       {movie && (
         <div>
-          <img
-            src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-            alt={movie.original_title ?? movie.original_name}
-          />
+          {movie.poster_path && (
+            <img
+              src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+              alt={movie.original_title ?? movie.original_name}
+            />
+          )}
           <div>
             <h1>{movie.title ?? movie.name}</h1>
             {/* <p></p>
