@@ -57,7 +57,12 @@ export default function MoviesView() {
           {movies.map(movie => {
             return (
               <ListItem key={movie.id}>
-                <Link to={`${movie.id}`} state={{ from: location, obj: movie }}>
+                <Link
+                  to={`${movie.id}`}
+                  state={{
+                    from: location,
+                  }}
+                >
                   {movie.title ?? movie.name}
                 </Link>
               </ListItem>

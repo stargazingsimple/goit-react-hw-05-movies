@@ -26,10 +26,7 @@ export default function HomeView() {
           {movies.map(movie => {
             return (
               <ListItem key={movie.id}>
-                <Link
-                  to={`movies/${movie.id}`}
-                  state={{ from: location, obj: movie }}
-                >
+                <Link to={`movies/${movie.id}`} state={{ from: location }}>
                   {movie.title ?? movie.name}
                 </Link>
               </ListItem>
