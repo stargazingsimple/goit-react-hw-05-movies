@@ -1,3 +1,4 @@
+import Loader from 'components/Loader/Loader';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { BlockMovie } from 'views/MovieDetailsView/MoveDetails.styled';
@@ -5,7 +6,7 @@ import * as API from '../../services/api-movies';
 import { ListItem } from '../HomeView/HomeView.styled';
 
 export default function CastView() {
-  const [cast, setCast] = useState([]);
+  const [cast, setCast] = useState(null);
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -18,8 +19,11 @@ export default function CastView() {
 
   return (
     <>
-      {!cast.length > 0 && <p>We don't have any casters info for the movie</p>}
-      {cast.length > 0 && (
+      {!cast && <Loader />}
+      {cast?.length === 0 && (
+        <p>We don't have any casters info for the movie</p>
+      )}
+      {cast?.length > 0 && (
         <BlockMovie>
           <ul>
             {cast.map(el => {

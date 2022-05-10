@@ -13,7 +13,7 @@ import { AdditionalInfo, BlockMovie, MovieInfo } from './MoveDetails.styled';
 import { ListItem } from 'views/HomeView/HomeView.styled';
 
 export default function MovieDetailsView() {
-  const [movie, setMovie] = useState({});
+  const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,8 +44,8 @@ export default function MovieDetailsView() {
       <button type="button" onClick={() => goBack()}>
         Go Back
       </button>
-      {!Object.keys(movie).length > 0 && <Loader />}
-      {Object.keys(movie).length > 0 && (
+      {!movie && <Loader />}
+      {movie && (
         <>
           <BlockMovie>
             {movie.poster_path ? (

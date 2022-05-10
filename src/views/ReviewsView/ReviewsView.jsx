@@ -1,9 +1,10 @@
+import Loader from 'components/Loader/Loader';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as API from '../../services/api-movies';
 
 export default function ReviewsView() {
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState(null);
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -16,8 +17,9 @@ export default function ReviewsView() {
 
   return (
     <>
-      {!reviews.length > 0 && <p>We don't have any reviews for the movie</p>}
-      {reviews.length > 0 && (
+      {!reviews && <Loader />}
+      {reviews?.length === 0 && <p>We don't have any reviews for the movie</p>}
+      {reviews?.length > 0 && (
         <ul>
           {reviews.map(el => {
             return (
